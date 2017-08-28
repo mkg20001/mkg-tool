@@ -22,6 +22,7 @@ def.silent = true
 node(def, (err, node) => {
   if (err) throw err
   require("./lib/peerdb")(node)
+  require("./lib/network")(node) //testing
 
   global.NODE = node
 
