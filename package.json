@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Mkg's p2p remote access tool",
   "main": "index.js",
+  "bin": {
+    "mkg-tool-server": "./server.js",
+    "mkg-tool": "./tool.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
