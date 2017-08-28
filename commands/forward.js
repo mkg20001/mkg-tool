@@ -67,8 +67,8 @@ module.exports = {
           console.error("Unauthorized")
           process.exit(2)
         }
-        swarm.networkCall(peer, toMa(map.local), toMa(map.remote), err => {
-          throw err
+        swarm.networkServer(peer, toMa(map.local), toMa(map.remote), err => {
+          if (err) throw err
         })
       })
     })
