@@ -1,6 +1,7 @@
 "use strict"
 
 const log = console.log.bind(console)
+const parallel = require("async/parallel")
 
 module.exports = {
   command: "list",
@@ -11,13 +12,15 @@ module.exports = {
     const swarm = global.NODE
     const peerdb = swarm.peerdb
     let online = {}
+    let authstate = {}
     swarm.on("peer:connect", peer => {
       const id = peer.id.toB58String()
       online[id] = true
+      swarm.isAuthorized(peer, (err, res) =>
+        authstate[id] = err ? "error" : res)
     })
     online[swarm.ownid] = true
     setTimeout(() => {
-      swarm.stop(() => {})
       let table = []
       let pids = {}
       let id
@@ -25,16 +28,18 @@ module.exports = {
         pids[id] = true
       for (id in online)
         pids[id] = true
+      swarm.stop(() => {})
       for (id in pids) {
         const name = peerdb.idToHostname(id)
         const rid = peerdb.hostnameToId(name)
         let hostname
         if (rid == id) hostname = name
-        else hostname = name + " (@@@ SPOFED @@)"
+        else hostname = name + " (@@@ WARNING: DIFFERENT REMOTE HOST IDENTIFICATION! @@)"
         table.push({
           id,
           hostname,
-          online: online[id] || false
+          online: online[id] || false,
+          authorized: authstate[id] == null ? "unknown" : authstate[id]
         })
       }
       console.table(table)
