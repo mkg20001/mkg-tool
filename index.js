@@ -8,13 +8,12 @@ const jfile = require("jsonfile")
 const os = require("os")
 const path = require("path")
 const mkdirp = require("mkdirp")
+const debug = require("debug")
 
 const defaults = {}
 
 const clone = require("clone")
 const merge = require("merge-recursive").recursive
-
-const logger = console.log.bind(console)
 
 function getHome() {
   const isroot = !process.getuid()
@@ -34,6 +33,7 @@ function getHome() {
 module.exports = function mkgNode(conf, cb) {
   if (!conf.bootstrap) throw new Error("No bootstrap peers")
   if (!conf.listen) conf.listen = ["/ip4/0.0.0.0/tcp/5235", "/ip6/::/tcp/5235"]
+  const logger = conf.silent ? debug("mkg-tool") : console.log.bind(console)
 
   const confpath = path.join(getHome(), ".mkg", "config.json")
   const liftoff = (id, userconf) => {
