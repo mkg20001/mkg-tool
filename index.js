@@ -16,12 +16,26 @@ const merge = require("merge-recursive").recursive
 
 const logger = console.log.bind(console)
 
+function getHome() {
+  const isroot = !process.getuid()
+  if (process.env.SNAP) {
+    if (isroot)
+      return process.env.SNAP_COMMON
+    else
+      return process.env.SNAP_USER_COMMON
+  } else {
+    if (isroot)
+      return "/usr/lib/mkg-tool"
+    else
+      return os.homedir()
+  }
+}
+
 module.exports = function mkgNode(conf, cb) {
   if (!conf.bootstrap) throw new Error("No bootstrap peers")
   if (!conf.listen) conf.listen = ["/ip4/0.0.0.0/tcp/5235", "/ip6/::/tcp/5235"]
 
-
-  const confpath = path.join(os.homedir(), ".mkg", "config.json")
+  const confpath = path.join(getHome(), ".mkg", "config.json")
   const liftoff = (id, userconf) => {
     logger("Starting node...")
     delete userconf.id
