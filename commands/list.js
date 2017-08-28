@@ -20,6 +20,7 @@ module.exports = {
         authstate[id] = err ? "error" : res)
     })
     online[swarm.ownid] = true
+    authstate[swarm.ownid] = true
     setTimeout(() => {
       let table = []
       let pids = {}
