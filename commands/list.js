@@ -15,8 +15,8 @@ module.exports = {
       const id = peer.id.toB58String()
       online[id] = true
     })
+    online[swarm.ownid] = true
     setTimeout(() => {
-      console.log("Creating table")
       swarm.stop(() => {})
       let table = []
       let pids = {}
@@ -34,7 +34,7 @@ module.exports = {
         table.push({
           id,
           hostname,
-          online: online[id]
+          online: online[id] || false
         })
       }
       console.table(table)

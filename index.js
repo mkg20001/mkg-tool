@@ -44,8 +44,18 @@ module.exports = function mkgNode(conf, cb) {
     const node = MNode(conf)
     node.dir = path.join(getHome(), ".mkg")
     node.ownid = id.toB58String()
+
+    function onExit() {
+      node.stop(err => {
+        if (err) console.error(err)
+        process.exit(err ? 2 : 0)
+      })
+    }
+    
     node.start(err => {
       if (err) return cb(err)
+      process.on("SIGTERM", onExit)
+      process.on("SIGINT", onExit)
       logger("Ready")
       return cb(null, node)
     })
