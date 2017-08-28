@@ -8,18 +8,18 @@ grade: stable
 confinement: strict
 
 apps:
-  mkg-tool-server:
-    command: "mkg-tool-server 2>&1 > .log" #overwrite the log 'cause i'm to lazy to rotate
-    daemon: simple
-    plugs:
-      - network
-      - network-bind
-#  mkg-tool:
-#    command: mkg-tool
-#    plugs:
-#      - network
-#      - network-bind
-      
+#0  mkg-tool-server:
+#0    command: "mkg-tool-server 2>&1 > .log" #overwrite the log 'cause i'm to lazy to rotate
+#0    daemon: simple
+#0    plugs:
+#0      - network
+#0      - network-bind
+#1  mkg-tool:
+#1    command: mkg-tool
+#1    plugs:
+#1      - network
+#1      - network-bind
+
 parts:
   tool:
     plugin: nodejs

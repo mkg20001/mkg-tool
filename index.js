@@ -51,7 +51,7 @@ module.exports = function mkgNode(conf, cb) {
         process.exit(err ? 2 : 0)
       })
     }
-    
+
     node.start(err => {
       if (err) return cb(err)
       process.on("SIGTERM", onExit)
