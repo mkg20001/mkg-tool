@@ -42,6 +42,8 @@ module.exports = function mkgNode(conf, cb) {
     conf = merge(conf, userconf)
     conf.id = id
     const node = MNode(conf)
+    node.dir = path.join(getHome(), ".mkg")
+    node.ownid = id.toB58String()
     node.start(err => {
       if (err) return cb(err)
       logger("Ready")
