@@ -14,7 +14,12 @@ apps:
     plugs:
       - network
       - network-bind
-
+  mkg-tool:
+    command: mkg-tool
+    plugs:
+      - network
+      - network-bind
+      
 parts:
   tool:
     plugin: nodejs
