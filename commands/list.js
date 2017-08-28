@@ -21,7 +21,7 @@ module.exports = {
       let table = []
       let pids = {}
       let id
-      for (id in peerdb.get("ids"))
+      for (id in peerdb.ids)
         pids[id] = true
       for (id in online)
         pids[id] = true
