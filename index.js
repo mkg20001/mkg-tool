@@ -32,7 +32,7 @@ function getHome() {
 
 module.exports = function mkgNode(conf, cb) {
   if (!conf.bootstrap) throw new Error("No bootstrap peers")
-  if (!conf.listen) conf.listen = ["/ip4/0.0.0.0/tcp/5235", "/ip6/::/tcp/5235"]
+  if (!conf.listen) conf.listen = ["/ip4/0.0.0.0/tcp/5235", "/ip6/::/tcp/5235", "/libp2p-webrtc-star/dns4/localhost/ws/"]
   const logger = conf.silent ? debug("mkg-tool") : console.log.bind(console)
 
   const confpath = path.join(getHome(), ".mkg", "config.json")

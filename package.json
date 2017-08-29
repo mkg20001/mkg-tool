@@ -23,7 +23,6 @@
     "clone": "^2.1.1",
     "colors": "^1.1.2",
     "console.table": "^0.9.1",
-    "json-file": "^0.1.0",
     "jsonfile": "^3.0.1",
     "libp2p": "^0.11.0",
     "libp2p-mdns": "^0.8.0",
@@ -32,7 +31,7 @@
     "libp2p-secio": "^0.7.1",
     "libp2p-spdy": "^0.10.6",
     "libp2p-tcp": "^0.10.2",
-    "libp2p-webrtc-star": "^0.12.0",
+    "libp2p-websocket-star": "^0.1.1",
     "merge-recursive": "0.0.3",
     "mkdirp": "^0.5.1",
     "once": "^1.4.0",
@@ -41,7 +40,6 @@
     "pull-protocol-buffers": "^0.1.1",
     "pull-stream": "^3.6.0",
     "uuid": "^3.1.0",
-    "wrtc": "0.0.62",
     "yargs": "^8.0.2"
   }
 }

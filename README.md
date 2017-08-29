@@ -18,6 +18,3 @@ A client with the following commands:
     - Forwards `remoteaddr` on `host` to `localaddr`
   `ssh`:
     - Forwards the ssh port to localhost and executes ssh
-
-# ToDos
- - [ ] Find a way to circumvent NATs without WebRTC (propably the method from last time)
