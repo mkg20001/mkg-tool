@@ -16,7 +16,7 @@ log.warn = console.warn.bind(console)
 const def = require("./defaults")
 const rminmax = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 const rport = rminmax(10000, 30000)
-def.listen = ["/ip4/0.0.0.0/tcp/" + rport, "/ip6/::/tcp/" + rport, def.listen[2]]
+def.listen = ["/ip4/0.0.0.0/tcp/" + rport, "/ip6/::/tcp/" + rport, "/libp2p-webrtc-star/ip4/148.251.206.162/tcp/4278/ws/"]
 def.silent = true
 
 node(def, (err, node) => {
