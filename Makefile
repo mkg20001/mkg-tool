@@ -12,7 +12,7 @@ server: clean
 	make clean
 client: clean
 	sed "s|#1||g" -i snap/snapcraft.yaml
-	sed "s|confinement*|confinement: classic|g" -i snap/snapcraft.yaml
+	sed "s|confinement: strict|confinement: classic|g" -i snap/snapcraft.yaml
 	snapcraft
 	snap install *.snap --dangerous --classic
 	make clean
