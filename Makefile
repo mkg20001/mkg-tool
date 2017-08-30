@@ -6,13 +6,14 @@ clean: rmsnap
 	git checkout -- snap/snapcraft.yaml
 	snapcraft clean
 server: clean
-	sed "s|#0||g" -i snap/snapcraft.yaml
 	snapcraft
 	snapcraft push *.snap --release stable
 	make clean
+install:
+	rm -rf /usr/lib/mkg-tool /usr/bin/mkg-tool
+	cp -r . /usr/lib/mkg-tool
+	chmod 755 -R /usr/lib/mkg-tool
+	chown root:root -R /usr/lib/mkg-tool
+	ln -s /usr/lib/mkg-tool/tool.js /usr/bin/mkg-tool
 client: clean
-	sed "s|#1||g" -i snap/snapcraft.yaml
-	sed "s|confinement: strict|confinement: classic|g" -i snap/snapcraft.yaml
-	snapcraft
-	snap install *.snap --dangerous --classic
-	make clean
+	sudo make install
