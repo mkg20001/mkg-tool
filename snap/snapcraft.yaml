@@ -16,8 +16,6 @@ apps:
 #0      - network-bind
 #1  mkg-tool:
 #1    command: mkg-tool
-#1    stage-packages:
-#1      - openssh-client
 #1    plugs:
 #1      - network
 #1      - network-bind
@@ -27,3 +25,5 @@ parts:
     plugin: nodejs
     node-engine: 8.4.0
     source: .
+    stage-packages:
+      - openssh-client
