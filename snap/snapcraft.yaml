@@ -25,5 +25,5 @@ parts:
     plugin: nodejs
     node-engine: 8.4.0
     source: .
-    stage-packages:
-      - openssh-client
+#1    stage-packages:
+#1      - openssh-client
