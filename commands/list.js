@@ -1,7 +1,6 @@
 "use strict"
 
 const log = console.log.bind(console)
-const parallel = require("async/parallel")
 
 module.exports = {
   command: "list",
