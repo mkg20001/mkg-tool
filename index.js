@@ -85,4 +85,4 @@ module.exports = function mkgNode(conf, cb) {
   }
 }
 
-module.exports.listen = ["/ip4/0.0.0.0/tcp/5235", "/ip6/::/tcp/5235", "/ip4/148.251.206.162/tcp/4278/ws/p2p-websocket-star/", "/dns4/ws-star-signal-1.servep2p.com/wss/p2p-websocket-star/", "/dns/ws-star-signal-2.servep2p.com/wss/p2p-websocket-star/", "/dns4/ws-star-signal-3.servep2p.com/wss/p2p-websocket-star/", "/dns4/localhost/ws/p2p-websocket-star/"]
+module.exports.listen = ["/ip4/0.0.0.0/tcp/5235", "/ip6/::/tcp/5235", "/dns4/ws-star-signal-1.servep2p.com/wss/p2p-websocket-star/", "/dns/ws-star-signal-2.servep2p.com/wss/p2p-websocket-star/", "/dns4/ws-star-signal-3.servep2p.com/wss/p2p-websocket-star/", "/dns4/localhost/ws/p2p-websocket-star/"]
