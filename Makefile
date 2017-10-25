@@ -17,3 +17,5 @@ install:
 	ln -s /usr/lib/mkg-tool/tool.js /usr/bin/mkg-tool
 client: clean
 	sudo make install
+winbuild:
+	pkg -t node8.6.0-win-x64 .

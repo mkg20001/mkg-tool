@@ -16,6 +16,7 @@ const clone = require("clone")
 const merge = require("merge-recursive").recursive
 
 function getHome() {
+  if (process.platform.startsWith("win")) return process.env.APPDATA
   const isroot = !process.getuid()
   if (process.env.SNAP) {
     if (isroot)
