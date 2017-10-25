@@ -32,7 +32,7 @@ function getHome() {
 
 module.exports = function mkgNode(conf, cb) {
   if (!conf.bootstrap) throw new Error("No bootstrap peers")
-  if (!conf.listen) conf.listen = ["/ip4/0.0.0.0/tcp/5235", "/ip6/::/tcp/5235", "/libp2p-webrtc-star/ip4/148.251.206.162/tcp/4278/ws/"]
+  if (!conf.listen) conf.listen = module.exports.listen
   const logger = conf.silent ? debug("mkg-tool") : console.log.bind(console)
 
   const confpath = path.join(getHome(), ".mkg", "config.json")
@@ -83,3 +83,5 @@ module.exports = function mkgNode(conf, cb) {
     })
   }
 }
+
+module.exports.listen = ["/ip4/0.0.0.0/tcp/5235", "/ip6/::/tcp/5235", "/ip4/148.251.206.162/tcp/4278/ws/p2p-websocket-star/", "/dns4/ws-star-signal-1.servep2p.com/wss/p2p-websocket-star/", "/dns/ws-star-signal-2.servep2p.com/wss/p2p-websocket-star/", "/dns4/ws-star-signal-3.servep2p.com/wss/p2p-websocket-star/", "/dns4/localhost/ws/p2p-websocket-star/"]
