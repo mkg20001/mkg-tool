@@ -18,4 +18,4 @@ install:
 client: clean
 	sudo make install
 winbuild:
-	pkg -t node8.6.0-win-x64 .
+	pkg -t node8.9.0-win-x64 .
