@@ -19,3 +19,5 @@ client: clean
 	sudo make install
 winbuild:
 	pkg -t node8.9.0-win-x64 .
+dist:
+	tar cvfz mkgtool.tar.gz /usr/lib/mkg-tool /usr/bin/mkg-tool
