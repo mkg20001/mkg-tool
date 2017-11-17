@@ -12,9 +12,14 @@ The snap (`mkg-tool`) is private because otherwise I'd get access to random peop
 A server. That's the thing the client connects.
 
 A client with the following commands:
-  `list`:
+- `list`:
     - Lists all peers in the peerdb and the authorization/online state of each
-  `forward <host> <remoteaddr> <localaddr>`:
+- `forward <host> <remoteaddr> <localaddr>`:
     - Forwards `remoteaddr` on `host` to `localaddr`
-  `ssh`:
+- `ssh`:
     - Forwards the ssh port to localhost and executes ssh
+- `rmid`
+    - Removes the id and associated hostname
+
+# Logs
+Logs can be viewed with `journalctl -u snap.mkg-tool.mkg-tool-server.service`
