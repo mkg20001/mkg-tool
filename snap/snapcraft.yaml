@@ -18,5 +18,5 @@ apps:
 parts:
   tool:
     plugin: nodejs
-    node-engine: 8.4.0
+    node-engine: 8.9.1
     source: .

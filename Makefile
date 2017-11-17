@@ -3,7 +3,7 @@ rmsnap:
 	rm -fv *.snap
 	rm -fv *.tar.bz2
 clean: rmsnap
-	git checkout -- snap/snapcraft.yaml
+	rm -rf node_modules
 	snapcraft clean
 server: clean
 	snapcraft
