@@ -1,5 +1,5 @@
 name: mkg-tool
-version: 0.0.1
+version: 0.0.2
 summary: Mkg's p2p remote access tool
 description: |
   ...
@@ -9,7 +9,7 @@ confinement: strict
 
 apps:
   mkg-tool-server:
-    command: "mkg-tool-server 2>&1 > .log" #overwrite the log 'cause i'm to lazy to rotate
+    command: mkg-tool-server
     daemon: simple
     plugs:
       - network
