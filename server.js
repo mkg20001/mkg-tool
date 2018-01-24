@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-"use strict"
+'use strict'
 
-const node = require(".")
+const node = require('.')
 
-node(require("./defaults"), (err, node) => {
+node(require('./defaults'), (err, node) => {
   if (err) throw err
-  require("./lib/network")(node)
+  require('./lib/network')(node)
 })

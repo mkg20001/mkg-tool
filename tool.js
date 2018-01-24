@@ -1,28 +1,28 @@
 #!/usr/bin/env node
 
-"use strict"
+'use strict'
 
-require("colors")
-require("console.table")
+require('colors')
+require('console.table')
 
-const node = require(".")
-const debug = require("debug")
-const yargs = require("yargs")
+const node = require('.')
+const debug = require('debug')
+const yargs = require('yargs')
 
 const log = debug('mkg-tool')
 log.error = debug('mkg-tool:error')
 log.warn = console.warn.bind(console)
 
-const def = require("./defaults")
+const def = require('./defaults')
 const rminmax = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 const rport = rminmax(10000, 30000)
-def.listen = ["/ip4/0.0.0.0/tcp/" + rport, "/ip6/::/tcp/" + rport].concat(node.listen.slice(2))
+def.listen = ['/ip4/0.0.0.0/tcp/' + rport, '/ip6/::/tcp/' + rport].concat(node.listen.slice(2))
 def.silent = true
 
 node(def, (err, node) => {
   if (err) throw err
-  require("./lib/peerdb")(node)
-  require("./lib/network")(node) //testing
+  require('./lib/peerdb')(node)
+  require('./lib/network')(node) // testing
 
   global.NODE = node
 

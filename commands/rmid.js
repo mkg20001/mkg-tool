@@ -1,14 +1,14 @@
-"use strict"
+'use strict'
 
 const log = console.log.bind(console)
 
 module.exports = {
-  command: "rmid <id>",
-  describe: "Removes an id from the list",
+  command: 'rmid <id>',
+  describe: 'Removes an id from the list',
   builder: {
     id: {
-      type: "string",
-      description: "Id to remove",
+      type: 'string',
+      description: 'Id to remove',
       required: true
     }
   },

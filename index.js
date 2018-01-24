@@ -1,52 +1,52 @@
-"use strict"
+'use strict'
 
-const MNode = require("./lib")
+const MNode = require('./lib')
 
-const Id = require("peer-id")
-const fs = require("fs")
-const jfile = require("jsonfile")
-const os = require("os")
-const path = require("path")
-const mkdirp = require("mkdirp")
-const debug = require("debug")
+const Id = require('peer-id')
+const fs = require('fs')
+const jfile = require('jsonfile')
+const os = require('os')
+const path = require('path')
+const mkdirp = require('mkdirp')
+const debug = require('debug')
 
 const defaults = {}
 
-const clone = require("clone")
-const merge = require("merge-recursive").recursive
+const clone = require('clone')
+const merge = require('merge-recursive').recursive
 
-function getHome() {
-  if (process.platform.startsWith("win")) return process.env.APPDATA
+function getHome () {
+  if (process.platform.startsWith('win')) return process.env.APPDATA
   const isroot = !process.getuid()
   if (process.env.SNAP) {
-    if (isroot)
+    if (isroot) {
       return process.env.SNAP_COMMON
-    else
+    } else {
       return process.env.SNAP_USER_COMMON
+    }
   } else {
-    if (isroot)
-      return "/usr/lib/mkg-tool"
-    else
+    if (isroot) { return '/usr/lib/mkg-tool' } else {
       return os.homedir()
+    }
   }
 }
 
-module.exports = function mkgNode(conf, cb) {
-  if (!conf.bootstrap) throw new Error("No bootstrap peers")
+module.exports = function mkgNode (conf, cb) {
+  if (!conf.bootstrap) throw new Error('No bootstrap peers')
   if (!conf.listen) conf.listen = module.exports.listen
-  const logger = conf.silent ? debug("mkg-tool") : console.log.bind(console)
+  const logger = conf.silent ? debug('mkg-tool') : console.log.bind(console)
 
-  const confpath = path.join(getHome(), ".mkg", "config.json")
+  const confpath = path.join(getHome(), '.mkg', 'config.json')
   const liftoff = (id, userconf) => {
-    logger("Starting node...")
+    logger('Starting node...')
     delete userconf.id
     conf = merge(conf, userconf)
     conf.id = id
     const node = MNode(conf)
-    node.dir = path.join(getHome(), ".mkg")
+    node.dir = path.join(getHome(), '.mkg')
     node.ownid = id.toB58String()
 
-    function onExit() {
+    function onExit () {
       node.stop(err => {
         if (err) console.error(err)
         process.exit(err ? 2 : 0)
@@ -55,20 +55,20 @@ module.exports = function mkgNode(conf, cb) {
 
     node.start(err => {
       if (err) return cb(err)
-      process.on("SIGTERM", onExit)
-      process.on("SIGINT", onExit)
-      logger("Ready")
+      process.on('SIGTERM', onExit)
+      process.on('SIGINT', onExit)
+      logger('Ready')
       return cb(null, node)
     })
   }
 
   if (!fs.existsSync(confpath)) {
-    logger("Generating 4K RSA key...")
+    logger('Generating 4K RSA key...')
     Id.create({
       bits: 4096
     }, (err, id) => {
       if (err) return cb(err)
-      logger("Init config...")
+      logger('Init config...')
       let c = clone(defaults)
       c.id = id
       mkdirp.sync(path.dirname(confpath))
@@ -76,7 +76,7 @@ module.exports = function mkgNode(conf, cb) {
       liftoff(id, c)
     })
   } else {
-    logger("Read config...")
+    logger('Read config...')
     const c = jfile.readFileSync(confpath)
     Id.createFromJSON(c.id, (err, id) => {
       if (err) return cb(err)
@@ -85,4 +85,4 @@ module.exports = function mkgNode(conf, cb) {
   }
 }
 
-module.exports.listen = ["/ip4/0.0.0.0/tcp/5235", "/ip6/::/tcp/5235", '/dns/ws-star-signal-1.servep2p.com/tcp/443/wss/p2p-websocket-star', '/dns/ws-star-signal-2.servep2p.com/tcp/443/wss/p2p-websocket-star', '/dns/ws-star-signal-3.servep2p.com/tcp/443/wss/p2p-websocket-star', '/dns/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star', '/dns4/localhost/tcp/80/ws/p2p-websocket-star']
+module.exports.listen = ['/ip4/0.0.0.0/tcp/5235', '/ip6/::/tcp/5235', '/dns/ws-star-signal-1.servep2p.com/tcp/443/wss/p2p-websocket-star', '/dns/ws-star-signal-2.servep2p.com/tcp/443/wss/p2p-websocket-star', '/dns/ws-star-signal-3.servep2p.com/tcp/443/wss/p2p-websocket-star', '/dns/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star', '/dns4/localhost/tcp/80/ws/p2p-websocket-star']
