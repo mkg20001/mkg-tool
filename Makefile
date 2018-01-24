@@ -20,4 +20,4 @@ client: clean
 winbuild:
 	pkg -t node8.9.0-win-x64 .
 dist:
-	tar cvfz mkgtool.tar.gz /usr/lib/mkg-tool /usr/bin/mkg-tool
+	tar cvf mkgtool.tar.bz2 -I pbzip2 /usr/lib/mkg-tool /usr/bin/mkg-tool

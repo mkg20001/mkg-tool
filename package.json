@@ -40,6 +40,7 @@
     "pull-protocol-buffers": "^0.1.2",
     "pull-stream": "^3.6.1",
     "pump": "^2.0.1",
+    "raven": "^2.4.0",
     "uuid": "^3.2.1",
     "yargs": "^11.0.0"
   }
