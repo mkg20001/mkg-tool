@@ -18,7 +18,7 @@
   "author": "Maciej Krüger <mkg20001@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "bunyan": "^1.8.12",
+    "bunyan": "^1.8.13",
     "clone": "^2.1.1",
     "colors": "^1.1.2",
     "console.table": "^0.10.0",
